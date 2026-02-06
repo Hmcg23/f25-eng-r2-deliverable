@@ -5,8 +5,6 @@ import { createServerSupabaseClient } from "@/lib/server-utils";
 import { redirect } from "next/navigation";
 import AnimalSpeedGraph from "./animal-speed-graph";
 
-
-
 export default async function SpeciesSpeedPage() {
   // Create supabase server component client and obtain user session from stored cookie
   const supabase = createServerSupabaseClient();
@@ -28,13 +26,14 @@ export default async function SpeciesSpeedPage() {
       </div>
       <Separator className="my-4" />
       <section className="mb-8">
-        <h1 className="text-2xl font-bold mb-2">How Fast Are Animals?</h1>
+        <h1 className="mb-2 text-2xl font-bold">How Fast Are Animals?</h1>
         <p className="text-white-700">
-          The animal kingdom is full of speedsters, from the lightning-fast cheetah to the surprisingly swift pronghorn antelope.
-           But not all animals are built for speed—herbivores, omnivores, and carnivores have evolved different strategies for survival,
-           and their top velocities reflect their lifestyles. Carnivores often rely on bursts of speed to catch prey, while herbivores
-           may need to outrun predators, and omnivores fall somewhere in between. The graph below compares the velocities of various animals,
-            grouped by their dietary category, to reveal fascinating patterns in nature’s race for survival.
+          The animal kingdom is full of speedsters, from the lightning-fast cheetah to the surprisingly swift pronghorn
+          antelope. But not all animals are built for speed—herbivores, omnivores, and carnivores have evolved different
+          strategies for survival, and their top velocities reflect their lifestyles. Carnivores often rely on bursts of
+          speed to catch prey, while herbivores may need to outrun predators, and omnivores fall somewhere in between.
+          The graph below compares the velocities of various animals, grouped by their dietary category, to reveal
+          fascinating patterns in nature’s race for survival.
         </p>
       </section>
       <AnimalSpeedGraph />
