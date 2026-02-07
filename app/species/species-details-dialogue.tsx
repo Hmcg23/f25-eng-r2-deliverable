@@ -22,12 +22,12 @@ export default function SpeciiesDetailsDialogue({ species }: { species: Species 
           <DialogTitle>
             {species.scientific_name} | {species.kingdom}
           </DialogTitle>
+
           {species.common_name && <DialogDescription>{species.common_name}</DialogDescription>}
-          {species.description && (
-            <DialogDescription>
-              {species.description}. {species.common_name}&apos;s have a total population of {species.total_population}
-            </DialogDescription>
+          {species.total_population && (
+            <DialogDescription>Total population: {species.total_population}</DialogDescription>
           )}
+          {species.description && <DialogDescription>{species.description}</DialogDescription>}
         </DialogHeader>
         {/* TODO: Add form fields for species details here. */}
       </DialogContent>
