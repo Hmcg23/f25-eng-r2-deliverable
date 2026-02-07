@@ -19,10 +19,15 @@ export default function SpeciiesDetailsDialogue({ species }: { species: Species 
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{species.scientific_name}</DialogTitle>
-
-          {/* Only show the common name if it exists, otherwise the scientific name will be the only title. */}
+          <DialogTitle>
+            {species.scientific_name} | {species.kingdom}
+          </DialogTitle>
           {species.common_name && <DialogDescription>{species.common_name}</DialogDescription>}
+          {species.description && (
+            <DialogDescription>
+              {species.description}. {species.common_name}&apos;s have a total population of {species.total_population}
+            </DialogDescription>
+          )}
         </DialogHeader>
         {/* TODO: Add form fields for species details here. */}
       </DialogContent>
