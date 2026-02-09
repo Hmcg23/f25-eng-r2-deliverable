@@ -81,11 +81,18 @@ export default function SpeciesDetailsDialogue({ species }: { species: Species }
 
   const isAuthor = species.author === userId;
 
-  const startEditing = () => setIsEditing(true);
-  const cancelEditing = () => setIsEditing(false);
+  const startEditing = () => {
+    setIsEditing(true);
+  };
+  const cancelEditing = () => {
+    isEditing && window.confirm("Revert all unsaved changes?");
+    setIsEditing(false);
+  };
 
   const onSubmit = async (input: FormData) => {
     if (!userId) return;
+
+    window.confirm("Are you sure you want to submit?");
 
     const supabase = createBrowserSupabaseClient();
 
@@ -279,7 +286,15 @@ export default function SpeciesDetailsDialogue({ species }: { species: Species }
                   <Button type="submit" className="mr-2 flex-auto">
                     Confirm
                   </Button>
-                  <Button type="button" className="flex-auto" variant="secondary" onClick={() => setOpen(false)}>
+                  <Button
+                    type="button"
+                    className="flex-auto"
+                    variant="secondary"
+                    onClick={() => {
+                      setOpen(false);
+                      cancelEditing();
+                    }}
+                  >
                     Cancel
                   </Button>
                 </div>
