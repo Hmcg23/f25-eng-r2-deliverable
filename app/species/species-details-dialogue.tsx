@@ -117,9 +117,14 @@ export default function SpeciesDetailsDialogue({ species }: { species: Species }
       });
     }
 
-    toast({ title: "Species updated!" });
     setIsEditing(false);
+    form.reset(input);
     router.refresh();
+
+    return toast({
+      title: "Species updated!",
+      description: `Saved your changes to ${input.scientific_name}`,
+    });
   };
 
   return (
