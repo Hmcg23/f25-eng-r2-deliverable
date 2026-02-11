@@ -66,9 +66,19 @@ export default function AnimalSpeedGraph() {
     const containerHeight = graphRef.current?.clientHeight ?? 500;
 
     // Set up chart dimensions and margins
-    const width = Math.max(containerWidth, 600); // Minimum width of 600px
-    const height = Math.max(containerHeight, 800); // Minimum height of 400px
-    const margin = { top: 30, right: 60, bottom: 100, left: 200 };
+    const width = containerWidth;
+    const height = 600;
+    const isMobile = containerWidth < 640;
+
+    // base padding relative to screen size
+    const leftMargin = Math.min(Math.max(containerWidth * 0.25, 90), 220);
+
+    const margin = {
+      top: 30,
+      right: 30,
+      bottom: 80,
+      left: isMobile ? leftMargin * 0.8 : leftMargin,
+    };
 
     // Create the SVG element where D3 will draw the chart
     // https://github.com/d3/d3-selection
@@ -115,10 +125,13 @@ export default function AnimalSpeedGraph() {
           )} km/h. The fastest ${diet.toLowerCase()} is the ${fastestAnimal?.name}, reaching speeds of up to ${fastest} km/h, while the slowest is the ${slowestAnimal?.name}, moving at approximately ${slowest} km/h.`,
         );
 
+      // svg for main 3 graphs. scales based on screen size
       const svg = select(graphRef.current!)
         .append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .style("width", "100%")
+        .style("height", "auto")
         .style("margin-bottom", "40px");
 
       const innerWidth = width - margin.left - margin.right;
@@ -200,10 +213,13 @@ export default function AnimalSpeedGraph() {
     const summaryWidth = width;
     const summaryHeight = 300;
 
+    // svg for three average graphs. scales based on website size
     const summarySvg = select(graphRef.current!)
       .append("svg")
-      .attr("width", summaryWidth)
-      .attr("height", summaryHeight);
+      .attr("viewBox", `0 0 ${summaryWidth} ${summaryHeight}`)
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .style("width", "100%")
+      .style("height", "auto");
 
     summarySvg
       .append("text")
