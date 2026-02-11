@@ -68,7 +68,7 @@ export default function AnimalSpeedGraph() {
     // Set up chart dimensions and margins
     const width = Math.max(containerWidth, 600); // Minimum width of 600px
     const height = Math.max(containerHeight, 800); // Minimum height of 400px
-    const margin = { top: 30, right: 60, bottom: 100, left: 150 };
+    const margin = { top: 30, right: 60, bottom: 100, left: 200 };
 
     // Create the SVG element where D3 will draw the chart
     // https://github.com/d3/d3-selection

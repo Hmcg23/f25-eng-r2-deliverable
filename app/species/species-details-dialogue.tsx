@@ -92,8 +92,6 @@ export default function SpeciesDetailsDialogue({ species }: { species: Species }
   const onSubmit = async (input: FormData) => {
     if (!userId) return;
 
-    window.confirm("Are you sure you want to submit?");
-
     const supabase = createBrowserSupabaseClient();
 
     const { error } = await supabase
